@@ -30,14 +30,6 @@ public class Main {
 			}
 		}
 		
-		System.out.print
-		("{");
-		for (int i = 0; i < firstOne.size(); i++) {
-			System.out.print(firstOne.get(i) + " ");
-		}
-		System.out.print("} }");
-		
-		
 		firstOne.clear();
 		for (int i = 0; i < original1.size(); i++) {
 			firstOne.add(original1.elementAt(i)); 
