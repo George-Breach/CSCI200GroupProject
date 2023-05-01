@@ -1,5 +1,5 @@
 import java.util.Vector;
-
+import java.util.Scanner;
 
 
 public class Main {
@@ -210,7 +210,7 @@ public class Main {
 
 	// entering main
 	
-	public static void main(String[] args) {
+	public static void testFunctions() {
 		//Default Examples Classes and their values.
 		classSets set1 = new classSets();
 		classSets set2 = new classSets();
@@ -250,6 +250,76 @@ public class Main {
 		cartesianProduct(set1, set2);
 		cartesianProduct(set1, set2);
 		System.out.println();	
+	}
+	
+	public static void main(String[] args) {
+		testFunctions();
+		
+		String input;
+		Scanner userInput = new Scanner(System.in);
+		
+		System.out.println("Welcome to set calculator 3000");
+		
+		do {
+			
+			System.out.println("To modify or create a single set, press 1");
+			System.out.println("To compare more than one set, press 2, or q to quit.");
+			input = userInput.nextLine();
+				
+			
+		switch (input) {
+		case "q": 
+			System.out.println("Goodbye.");
+			System.exit(0);
+		case "1": 
+			System.out.println();
+			System.out.println();
+			System.out.println("1: Modify a set.");
+			System.out.println("2: Create a set.");
+			System.out.println("3: Back.");
+			System.out.println("q: QUIT");
+			input = userInput.nextLine();
+			switch (input) {
+				case "q": 
+					System.out.println("Goodbye.");
+					System.exit(0);
+				case "1": 
+					
+					
+				case "2": 
+					
+					
+					
+					
+					
+				case "3": 
+					break;
+					
+			default: System.out.println("Unknown input: " + input);		
+			}//end inner switch
+			
+			
+			
+			
+		case "2":
+			System.out.println();
+			System.out.println();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			}//end switch
+						
+		} while (input != "q"); //end while
+		
+		//Should be impossible to get here.
+		System.out.println("How did you even get here?");	
 
 	} //ends main
 }	//ends class
