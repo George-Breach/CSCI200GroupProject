@@ -4,8 +4,8 @@ import java.util.Vector;
 
 public class Main {
 
-	// power set of a and b
-	public static void powerSetA(classSets firstSet) {
+	// power set 
+	public static void powerSet(classSets firstSet) {
 		Vector<Character> firstOne = firstSet.getSet();
 		Vector<Character> original1 = new Vector<Character>();		
 		
@@ -13,12 +13,12 @@ public class Main {
 			original1.add(firstOne.elementAt(i)); 
 		}
 		
-		System.out.print("P(" + firstSet.getName() + ") = " + "{ { } ");
+		System.out.print("P(" + firstSet.getName() + ") = " + "{{ } ");
 		for(int i = 0; i < firstOne.size(); i++) {
 			System.out.print("{" + firstOne.get(i) + "} " );
 		}
 		
-		for(int i = 0; i < firstOne.size(); i++) {
+		for(int i = 0; i < firstOne.size()-1; i++) {
 			//System.out.print("{" + firstOne.get(i) + "} " );
 			for(int j = 1; j < firstOne.size(); j++) {
 				if(firstOne.get(i) == firstOne.get(j)) {
@@ -31,10 +31,15 @@ public class Main {
 		}
 		
 		firstOne.clear();
+		System.out.print("{");
 		for (int i = 0; i < original1.size(); i++) {
-			firstOne.add(original1.elementAt(i)); 
+			System.out.print(" "+ original1.get(i));
 		}	
+		System.out.print("}}");
 		System.out.println();
+		
+		firstOne.addAll(original1);
+		
 	}
 	
 	// check equality of a and b
@@ -119,7 +124,7 @@ public class Main {
 
 	// difference from a to b
 	
-	public static void differenceAB(classSets firstSet, classSets secondSet) {
+	public static void difference(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to get values from, and make set the intersection to newVector.
 		Vector<Character> firstOne = firstSet.getSet();
 		Vector<Character> secondOne = secondSet.getSet();
@@ -149,41 +154,9 @@ public class Main {
 		}
 	}
 	
-	// difference from b to a
-	
-	public static void differenceBA(classSets firstSet, classSets secondSet) {
-		//Make 2 vectors to get values from, and make set the intersection to newVector.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
-		Vector<Character> original1 = new Vector<Character>();	
-		Vector<Character> original2 = new Vector<Character>();	
-		
-		for (int i = 0; i < firstOne.size(); i++) {
-			original1.add(firstOne.elementAt(i)); 
-		}
-		
-		for (int i = 0; i < secondOne.size(); i++) {
-			original2.add(secondOne.elementAt(i)); 
-		}
-		
-		// use for loop to add values to new vector for intersection
-		secondOne.removeAll(firstOne);
-		
-		System.out.println("Difference(" + secondSet.getName() + "," + firstSet.getName() + ") = " + secondOne);
-		
-		firstOne.clear();
-		secondOne.clear();
-		for (int i = 0; i < original1.size(); i++) {
-			firstOne.add(original1.elementAt(i)); 
-		}
-		for (int i = 0; i < original2.size(); i++) {
-			secondOne.add(original2.elementAt(i)); 
-		}
-	}
-	
 	// cartesian product from a to b
 	
-	public static void cartesianProductAB(classSets firstSet, classSets secondSet) {
+	public static void cartesianProduct(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to get values from, and make set the intersection to newVector.
 		Vector<Character> firstOne = firstSet.getSet();
 		Vector<Character> secondOne = secondSet.getSet();
@@ -203,45 +176,6 @@ public class Main {
 		for(int i = 0; i < firstOne.size(); i++) {
 			for(int j = 0; j < secondOne.size(); j++) {
 				System.out.print("(" + firstOne.get(i) + ", " + secondOne.get(j) + ")");
-			}
-		}
-		
-		System.out.print("}");
-		
-		firstOne.clear();
-		secondOne.clear();
-		for (int i = 0; i < original1.size(); i++) {
-			firstOne.add(original1.elementAt(i)); 
-		}
-		for (int i = 0; i < original2.size(); i++) {
-			secondOne.add(original2.elementAt(i)); 
-		}
-		
-		System.out.println();
-	}
-	
-	// cartesian product from b to a
-	
-	public static void cartesianProductBA(classSets firstSet, classSets secondSet) {
-		//Make 2 vectors to get values from, and make set the intersection to newVector.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
-		Vector<Character> original1 = new Vector<Character>();	
-		Vector<Character> original2 = new Vector<Character>();	
-		
-		for (int i = 0; i < firstOne.size(); i++) {
-			original1.add(firstOne.elementAt(i)); 
-		}
-		
-		for (int i = 0; i < secondOne.size(); i++) {
-			original2.add(secondOne.elementAt(i)); 
-		}
-		
-		System.out.print("Cartesian Product(" + secondSet.getName() + "," + firstSet.getName() + ") = {");
-		
-		for(int i = 0; i < secondOne.size(); i++) {
-			for(int j = 0; j < firstOne.size(); j++) {
-				System.out.print("(" + secondOne.get(i) + ", " + firstOne.get(j) + ")");
 			}
 		}
 		
@@ -287,7 +221,7 @@ public class Main {
 
 		//Set their values properly.
 		set1.addElement('1'); set1.addElement('2'); set1.addElement('3'); 
-		set2.addElement('1'); set2.addElement('2'); 
+		set2.addElement('1'); set2.addElement('2'); set2.addElement('4');
 
 		//Test printing out the sets using the classSets class.
 		set1.printSet();
@@ -300,8 +234,8 @@ public class Main {
 		System.out.println();	
 
 		//Test various methods and stuff.
-		powerSetA(set1);
-		//powerSetA(set1);
+		powerSet(set1);
+		powerSet(set2);
 		System.out.println();
 		
 		equals(set1, set2);
@@ -311,10 +245,10 @@ public class Main {
 
 		union(set1, set2);
 		intersection(set1, set2);
-		differenceAB(set1, set2);
-		differenceBA(set1, set2);
-		cartesianProductAB(set1, set2);
-		cartesianProductBA(set1, set2);
+		difference(set1, set2);
+		difference(set2, set1);
+		cartesianProduct(set1, set2);
+		cartesianProduct(set1, set2);
 		System.out.println();	
 
 	} //ends main
