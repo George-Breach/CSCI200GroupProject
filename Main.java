@@ -210,18 +210,10 @@ public class Main {
 
 	// entering main
 	
-	public static void testFunctions() {
+	public static void testFunctions(classSets firstSet, classSets secondSet) {
 		//Default Examples Classes and their values.
-		classSets set1 = new classSets();
-		classSets set2 = new classSets();
-
-		//Set their names properly.
-		set1.setName("A"); 
-		set2.setName("B");	
-
-		//Set their values properly.
-		set1.addElement('1'); set1.addElement('2'); set1.addElement('3'); 
-		set2.addElement('1'); set2.addElement('2'); set2.addElement('4');
+		classSets set1 = firstSet;
+		classSets set2 = secondSet;
 
 		//Test printing out the sets using the classSets class.
 		set1.printSet();
@@ -253,69 +245,125 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		testFunctions();
 		
-		String input;
+		String input, input2;
 		Scanner userInput = new Scanner(System.in);
 		
 		System.out.println("Welcome to set calculator 3000");
+		System.out.println("Please select from the following options:");
 		
 		do {
 			
-			System.out.println("To modify or create a single set, press 1");
-			System.out.println("To compare more than one set, press 2, or q to quit.");
-			input = userInput.nextLine();
-				
-			
-		switch (input) {
-		case "q": 
-			System.out.println("Goodbye.");
-			System.exit(0);
-		case "1": 
 			System.out.println();
-			System.out.println();
-			System.out.println("1: Modify a set.");
-			System.out.println("2: Create a set.");
-			System.out.println("3: Back.");
+			System.out.println("1: Create a set.");
 			System.out.println("q: QUIT");
 			input = userInput.nextLine();
+				
+	
 			switch (input) {
-				case "q": 
-					System.out.println("Goodbye.");
-					System.exit(0);
-				case "1": 
+			case "q": 
+				System.out.println();
+				System.out.println("Goodbye.");
+				System.exit(0);
+			
+			case "1": 
+				//System.out.println("Placeholder");
+				System.out.println();
+				classSets set1 = new classSets();
+				classSets set2 = new classSets();
+				
+
+				//Set their names properly.
+				set1.setName("A"); 
+				set2.setName("B");	
+				System.out.println("****************");
+				System.out.println("  Create a set  ");
+				System.out.println("****************");
+				System.out.println("Sets cannot be longer than 9 entries");
+				System.out.println("This helps us conserve memory");
+				System.out.println();
+				System.out.println("Please enter the values for Set 1:");
+				System.out.println("When finished, enter F");
+				System.out.println();
+				
+				
+				//Set their values properly.
+				
+				for(int i = 0; i < 9; i++) 
+				{
+					System.out.println("Enter value " + (i + 1) + ": ");
+					char temp = userInput.next().charAt(0);
 					
+					if(temp == 'f') {
+						System.out.println("Set 1 complete");
+						System.out.println();
+						break;
+					}
+					else {
+						set1.addElement(temp);
+					}
+				}
+				
+				System.out.println("Please enter the values for Set 2:");
+				System.out.println("When finished, enter F");
+				System.out.println();
+				
+				for(int i = 0; i < 9; i++) 
+				{
+					System.out.println("Enter value " + (i + 1) + ": ");
+					char temp = userInput.next().charAt(0);
 					
-				case "2": 
+					if(temp == 'f') {
+						System.out.println("Set 2 complete");
+						System.out.println();
+						break;
+					}
+					else {
+						set2.addElement(temp);
+					}
+				}
+				
+				set1.printSet();
+				set2.printSet();
+				System.out.println();	
+				
+				System.out.println("Sets created, what would you like to do?");
+				
+				do {
+					System.out.println();
+					System.out.println("1: Modify a set.");
+					System.out.println("2: Show methods");
+					System.out.println("q: QUIT");
+					input2 = userInput.nextLine();
 					
+					switch (input2) {
+					case "1":
+						System.out.println("****************");
+						System.out.println("  Modify a set  ");
+						System.out.println("****************");
+						break;
 					
+					case "2":
+						System.out.println("****************");
+						System.out.println("    Methods  ");
+						System.out.println("****************");
+						System.out.println();
+						testFunctions(set1, set2);
+						System.out.println();
+						break;
 					
-					
-					
-				case "3": 
-					break;
-					
-			default: System.out.println("Unknown input: " + input);		
-			}//end inner switch
+					case "q":
+						System.out.println();
+						System.out.println("Goodbye.");
+						System.exit(0);
+				
+					default: System.out.println("Unknown input: " + input2);		
+					}
+				} while (input2 != "q");
 			
-			
-			
-			
-		case "2":
-			System.out.println();
-			System.out.println();
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+				default: System.out.println("Unknown input: " + input);		
 			}//end switch
-						
+			
 		} while (input != "q"); //end while
 		
 		//Should be impossible to get here.
