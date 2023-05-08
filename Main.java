@@ -365,6 +365,7 @@ public class Main {
 			}//end switch
 			
 		} while (input != "q"); //end while
+		userInput.close();
 		
 		//Should be impossible to get here.
 		System.out.println("How did you even get here?");	
