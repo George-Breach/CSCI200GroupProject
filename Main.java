@@ -248,6 +248,7 @@ public class Main {
 		
 		String input, input2;
 		Scanner userInput = new Scanner(System.in);
+		Scanner userInput2 = new Scanner(System.in);
 		
 		System.out.println("Welcome to set calculator 3000");
 		System.out.println("Please select from the following options:");
@@ -331,10 +332,10 @@ public class Main {
 				
 				do {
 					System.out.println();
-					System.out.println("1: Modify a set.");
+					System.out.println("1: Modify a set");
 					System.out.println("2: Show methods");
 					System.out.println("q: QUIT");
-					input2 = userInput.nextLine();
+					input2 = userInput2.nextLine();
 					
 					switch (input2) {
 					case "1":
