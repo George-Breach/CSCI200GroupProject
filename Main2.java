@@ -284,18 +284,19 @@ public class Main {
 				System.out.println("This helps us conserve memory");
 				System.out.println();
 				System.out.println("Please enter the values for Set 1:");
-				System.out.println("When finished, enter F");
+				System.out.println("When finished, enter f");
 				System.out.println();
 				
 				
 				//Set their values properly.
+				String value = "f";
 				
 				for(int i = 0; i < 9; i++) 
 				{
 					System.out.println("Enter value " + (i + 1) + ": ");
 					String temp = userInput.nextLine();
 					
-					if(temp == "f") {
+					if(temp.equals(value)) {
 						System.out.println("Set 1 complete");
 						System.out.println();
 						break;
@@ -306,7 +307,7 @@ public class Main {
 				}
 				
 				System.out.println("Please enter the values for Set 2:");
-				System.out.println("When finished, enter F");
+				System.out.println("When finished, enter f");
 				System.out.println();
 				
 				for(int i = 0; i < 9; i++) 
@@ -314,7 +315,7 @@ public class Main {
 					System.out.println("Enter value " + (i + 1) + ": ");
 					String temp = userInput.nextLine();
 					
-					if(temp == "f") {
+					if(temp.equals(value)) {
 						System.out.println("Set 2 complete");
 						System.out.println();
 						break;
@@ -367,7 +368,7 @@ public class Main {
 			
 		} while (input != "q"); //end while
 		userInput.close();
-		
+		userInput2.close();
 		//Should be impossible to get here.
 		System.out.println("How did you even get here?");	
 
