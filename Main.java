@@ -4,21 +4,20 @@ import java.util.Scanner;
 
 public class Main {
 	
-	static void printPowerSet(classSets firstSet, int set_size)
+	static void printPowerSet(classSets firstSet, int setSize)
 	{
 		Vector<String> firstOne = firstSet.getSet();
 		
-		long pow_set_size = (long)Math.pow(2, set_size);
-		int counter, j;
+		long powerSet = (long)Math.pow(2, setSize);
 
 		System.out.print("P(" + firstSet.getName() + ") = { ");
-		for(counter = 0; counter < pow_set_size; counter++)
+		for(int i = 0; i < powerSet; i++)
 		{
 			System.out.print("{ ");
-			for(j = 0; j < set_size; j++)
+			for(int j = 0; j < setSize; j++)
 			{
 				
-				if((counter & (1 << j)) > 0)
+				if((i & (1 << j)) > 0)
 					System.out.print(firstOne.elementAt(j) + " ");
 			}
 			System.out.print("}");
