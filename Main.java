@@ -3,51 +3,37 @@ import java.util.Scanner;
 
 
 public class Main {
+	
+	static void printPowerSet(classSets firstSet, int set_size)
+	{
+		Vector<String> firstOne = firstSet.getSet();
+		
+		long pow_set_size = (long)Math.pow(2, set_size);
+		int counter, j;
 
-	// power set 
-	public static void powerSet(classSets firstSet) {
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> original1 = new Vector<Character>();		
-		
-		for (int i = 0; i < firstOne.size(); i++) {
-			original1.add(firstOne.elementAt(i)); 
-		}
-		
-		System.out.print("P(" + firstSet.getName() + ") = " + "{{ } ");
-		for(int i = 0; i < firstOne.size(); i++) {
-			System.out.print("{" + firstOne.get(i) + "} " );
-		}
-		
-		for(int i = 0; i < firstOne.size()-1; i++) {
-			//System.out.print("{" + firstOne.get(i) + "} " );
-			for(int j = 1; j < firstOne.size(); j++) {
-				if(firstOne.get(i) == firstOne.get(j)) {
-					continue;
-				}
-				else {
-					System.out.print("{" + firstOne.get(i) +  " " + firstOne.get(j) + "} ");
-				}
+		System.out.print("P(" + firstSet.getName() + ") = { ");
+		for(counter = 0; counter < pow_set_size; counter++)
+		{
+			System.out.print("{ ");
+			for(j = 0; j < set_size; j++)
+			{
+				
+				if((counter & (1 << j)) > 0)
+					System.out.print(firstOne.elementAt(j) + " ");
 			}
+			System.out.print("}");
 		}
-		
-		firstOne.clear();
-		System.out.print("{");
-		for (int i = 0; i < original1.size(); i++) {
-			System.out.print(" "+ original1.get(i));
-		}	
-		System.out.print("}}");
+		System.out.print(" }");
 		System.out.println();
-		
-		firstOne.addAll(original1);
-		
 	}
+
 	
 	// check equality of a and b
 	
 	public static void equals(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to compare.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
+		Vector<String> firstOne = firstSet.getSet();
+		Vector<String> secondOne = secondSet.getSet();
 
 		//Check if the two vectors are equal, and print the result.
 		if (firstOne.equals(secondOne)) {
@@ -61,10 +47,10 @@ public class Main {
 	
 	public static void union(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to get values from, and make set the union to newVector.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
-		Vector<Character> newVector = new Vector<Character>();	
-		Vector<Character> original = new Vector<Character>();	
+		Vector<String> firstOne = firstSet.getSet();
+		Vector<String> secondOne = secondSet.getSet();
+		Vector<String> newVector = new Vector<String>();	
+		Vector<String> original = new Vector<String>();	
 		
 		for (int i = 0; i < secondOne.size(); i++) {
 			original.add(secondOne.elementAt(i)); 
@@ -87,11 +73,11 @@ public class Main {
 	
 	public static void intersection(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to get values from, and make set the intersection to newVector.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
-		Vector<Character> newVector = new Vector<Character>();
-		Vector<Character> original1 = new Vector<Character>();	
-		Vector<Character> original2 = new Vector<Character>();	
+		Vector<String> firstOne = firstSet.getSet();
+		Vector<String> secondOne = secondSet.getSet();
+		Vector<String> newVector = new Vector<String>();
+		Vector<String> original1 = new Vector<String>();	
+		Vector<String> original2 = new Vector<String>();	
 		
 		for (int i = 0; i < firstOne.size(); i++) {
 			original1.add(firstOne.elementAt(i)); 
@@ -104,7 +90,7 @@ public class Main {
 		// use for loop to add values to new vector for intersection
 		for(int i = 0; i < firstOne.size(); i++) {
 			for(int j = 0; j < secondOne.size(); j++) {
-				if (firstOne.get(i) == secondOne.get(j)) {
+				if (firstOne.get(i).equals(secondOne.get(j))) {
 					newVector.add(firstOne.get(i));
 				}
 			}
@@ -126,10 +112,10 @@ public class Main {
 	
 	public static void difference(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to get values from, and make set the intersection to newVector.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
-		Vector<Character> original1 = new Vector<Character>();	
-		Vector<Character> original2 = new Vector<Character>();	
+		Vector<String> firstOne = firstSet.getSet();
+		Vector<String> secondOne = secondSet.getSet();
+		Vector<String> original1 = new Vector<String>();	
+		Vector<String> original2 = new Vector<String>();	
 		
 		for (int i = 0; i < firstOne.size(); i++) {
 			original1.add(firstOne.elementAt(i)); 
@@ -158,10 +144,10 @@ public class Main {
 	
 	public static void cartesianProduct(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to get values from, and make set the intersection to newVector.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
-		Vector<Character> original1 = new Vector<Character>();	
-		Vector<Character> original2 = new Vector<Character>();	
+		Vector<String> firstOne = firstSet.getSet();
+		Vector<String> secondOne = secondSet.getSet();
+		Vector<String> original1 = new Vector<String>();	
+		Vector<String> original2 = new Vector<String>();	
 		
 		for (int i = 0; i < firstOne.size(); i++) {
 			original1.add(firstOne.elementAt(i)); 
@@ -197,8 +183,8 @@ public class Main {
 	
 	public static void isSubset(classSets firstSet, classSets secondSet) {
 		//Make 2 vectors to compare.
-		Vector<Character> firstOne = firstSet.getSet();
-		Vector<Character> secondOne = secondSet.getSet();
+		Vector<String> firstOne = firstSet.getSet();
+		Vector<String> secondOne = secondSet.getSet();
 
 		//Check if the first vector is inside the second vector and print result.
 		if (secondOne.containsAll(firstOne)) {
@@ -219,15 +205,17 @@ public class Main {
 		set1.printSet();
 		set2.printSet();
 		System.out.println();	
-
+		
 		//Test printing the Cardinality of the set using the classSets class.
 		set1.printCardinality();
 		set2.printCardinality();
 		System.out.println();	
 
 		//Test various methods and stuff.
-		powerSet(set1);
-		powerSet(set2);
+		printPowerSet(set1, set1.getSize());
+		printPowerSet(set2, set2.getSize());
+		//set1.printPowerSet();
+		//set2.printPowerSet();
 		System.out.println();
 		
 		equals(set1, set2);
@@ -246,14 +234,13 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		String input, input2;
+		String input, input2, input3, elements;
 		Scanner userInput = new Scanner(System.in);
 		Scanner userInput2 = new Scanner(System.in);
+		Scanner userInput3 = new Scanner(System.in);
 		
 		System.out.println("Welcome to set calculator 3000");
 		System.out.println("Please select from the following options:");
-		
-		do {
 			
 			System.out.println();
 			System.out.println("1: Create a set.");
@@ -284,18 +271,19 @@ public class Main {
 				System.out.println("This helps us conserve memory");
 				System.out.println();
 				System.out.println("Please enter the values for Set 1:");
-				System.out.println("When finished, enter F");
+				System.out.println("When finished, enter f");
 				System.out.println();
 				
 				
 				//Set their values properly.
+				String value = "f";
 				
 				for(int i = 0; i < 9; i++) 
 				{
 					System.out.println("Enter value " + (i + 1) + ": ");
-					char temp = userInput.next().charAt(0);
+					String temp = userInput.nextLine();
 					
-					if(temp == 'f') {
+					if(temp.equals(value)) {
 						System.out.println("Set 1 complete");
 						System.out.println();
 						break;
@@ -306,15 +294,15 @@ public class Main {
 				}
 				
 				System.out.println("Please enter the values for Set 2:");
-				System.out.println("When finished, enter F");
+				System.out.println("When finished, enter f");
 				System.out.println();
 				
 				for(int i = 0; i < 9; i++) 
 				{
 					System.out.println("Enter value " + (i + 1) + ": ");
-					char temp = userInput.next().charAt(0);
+					String temp = userInput.nextLine();
 					
-					if(temp == 'f') {
+					if(temp.equals(value)) {
 						System.out.println("Set 2 complete");
 						System.out.println();
 						break;
@@ -342,7 +330,89 @@ public class Main {
 						System.out.println("****************");
 						System.out.println("  Modify a set  ");
 						System.out.println("****************");
-						break;
+						System.out.println();
+						set1.printSet();
+						set2.printSet();
+						System.out.println();
+						System.out.println("1: Add an element to set A" );
+						System.out.println("2: Remove an element from set A" );
+						System.out.println("3: Add an element to set B" );
+						System.out.println("4: Remove an element from set B" );
+						System.out.println("q: QUIT");
+						input3 = userInput3.nextLine();
+						
+						
+						//new switch case for modify set
+						switch (input3) {
+						case "1":
+							set1.printSet();
+							System.out.println("Adding an element to set A" );
+							if (set1.getSize() >= 9) {
+								System.out.println("Unable to add element, this set is currently full.");
+							} else {
+								System.out.println("Enter an element to add: " );
+								elements = userInput.nextLine();
+								set1.addElement(elements);
+								set1.printSet();
+							}
+							break;
+							
+						case "2":
+							set1.printSet();
+							System.out.println("Removing an element from set A" );
+							if (set1.getSize() == 0) {  
+									System.out.println("Unable to remove element, this set is already empty.");
+								} else {
+									System.out.println("Enter an element to remove: " );
+									elements = userInput.nextLine();
+									if (set1.removeElement(elements)) {
+										System.out.println("Remove successful." );
+										set1.printSet();
+									} else {
+										System.out.println("Set A did not contain: " + elements);
+									}
+							}
+							break;
+							
+						case "3":
+							set2.printSet();
+							System.out.println("Adding an element to set B" );
+							if (set2.getSize() >= 9) {
+								System.out.println("Unable to add element, this set is currently full.");
+							} else {
+								System.out.println("Enter an element to add: " );
+								elements = userInput.nextLine();
+								set2.addElement(elements);
+								set2.printSet();
+							}
+							break;
+							
+						case "4":
+							set2.printSet();
+							System.out.println("Removing an element from set B" );
+							if (set2.getSize() == 0) {  
+									System.out.println("Unable to remove element, this set is already empty.");
+								} else {
+									System.out.println("Enter an element to remove: " );
+									elements = userInput.nextLine();
+									if (set2.removeElement(elements)) {
+										System.out.println("Remove successful." );
+										set2.printSet();
+									} else {
+										System.out.println("Set B did not contain: " + elements);
+									}
+							}
+							break;
+							
+						case "q":
+							System.out.println();
+							System.out.println("Goodbye.");
+							System.exit(0);
+							
+						default: System.out.println("Unknown input: " + input3);	
+						}	
+						//end of new switch case for modify set
+						break; //input2, case "1" break
 					
 					case "2":
 						System.out.println("****************");
@@ -357,17 +427,16 @@ public class Main {
 						System.out.println();
 						System.out.println("Goodbye.");
 						System.exit(0);
-				
-					default: System.out.println("Unknown input: " + input2);		
+						
 					}
-				} while (input2 != "q");
+				} while (!input.equals("q"));
 			
 				default: System.out.println("Unknown input: " + input);		
 			}//end switch
 			
-		} while (input != "q"); //end while
 		userInput.close();
-		
+		userInput2.close();
+		userInput3.close();
 		//Should be impossible to get here.
 		System.out.println("How did you even get here?");	
 
